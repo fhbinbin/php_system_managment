@@ -2,7 +2,7 @@
 header("content-type:text/html;charset=utf-8");
 require_once '../config/config.php';
 require_once '../functions/common.func.php';
-require_once '../functions/mysql.func.php';
+require_once '../functions/mysql_func.php';
 $link = connect3();
 $table = "student";
 $id = isset($_GET["id"])?$_GET["id"]:"";

@@ -1,5 +1,5 @@
 <?php
-require_once '../functions/mysql.func.php';
+require_once '../functions/mysql_func.php';
 require_once '../config/config.php';
 header("content-type:text/html;charset=utf-8");
 $link = connect3();
@@ -9,7 +9,7 @@ $offSet = ($page-1)*5;
 $table = "student";
 $totalRows = getTotalRows($link, $table);
 $sumPage = ceil($totalRows/$pageSize);
-$query = "select * from student limit {$offSet},{$pageSize}";
+$query = "select * from student order by id limit {$offSet},{$pageSize}";
 $rows = fetchAll($link, $query);
 ?>
 <!DOCTYPE html>
@@ -94,8 +94,11 @@ $rows = fetchAll($link, $query);
 								    $(".delect").click(function(){
 								        var id = $(this).attr("data_id");
 								        var url = "doAction.php?id="+id;
-								        $.get(url);
+
 								        $(this).parent().parent().empty();
+                                        $.get(url,function () {
+                                            alert('删除成功')
+                                        });
 										    });
 								  });
 							</script>

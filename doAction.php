@@ -22,7 +22,19 @@ switch ($act){
         alertMes('注册成功，立即激活使用', 'index.php');
         break;
     case 'login':
-        echo 'login';
+        $username=addslashes($username);
+        $query="SELECT id FROM {$table} WHERE username='{$username}' AND password='{$password}'";
+        $row=fetchOne($link, $query);
+        if($row){
+            alertMes('登陆成功，跳转到首页','student/layout-index.php');
+// 			if($row['status']==0){
+// 				alertMes('请先到邮箱激活再来登陆','index.php');
+// 			}else{
+// 				alertMes('登陆成功，跳转到首页','student/layout-index.php');
+// 			}
+        }else{
+            alertMes('用户名或密码错误，重新登陆','index.php');
+        }
         break;
 }
 
